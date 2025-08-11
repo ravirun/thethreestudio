@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Brain, ShoppingCart, Megaphone, Wrench, LineChart, ShieldCheck, Calendar, ArrowRight, Zap, CheckCircle } from "lucide-react";
+import { Brain, ShoppingCart, Megaphone, Wrench, LineChart, ArrowRight, Zap, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const services = [
   {
@@ -254,15 +255,15 @@ export default function ServicesPage() {
               Ready to Transform Your Business with AI?
             </h3>
             <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss your specific needs and create a custom AI strategy that drives measurable growth.
+              Let&apos;s discuss your specific needs and create a custom AI strategy that drives measurable growth.
             </p>
-            <a 
+            <Link 
               href="/#contact"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 text-black px-8 py-4 font-semibold hover:bg-emerald-600 transition text-lg"
             >
               Get Started Today
               <ArrowRight className="h-5 w-5" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>

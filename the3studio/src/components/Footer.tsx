@@ -1,7 +1,5 @@
-"use client";
-import React from "react";
 import Link from "next/link";
-import { Brain, Mail, Phone, MessageSquare } from "lucide-react";
+import { Brain, Mail, Phone,  } from "lucide-react";
 
 export default function Footer() {
   const phone = "+918002845545";
@@ -29,14 +27,14 @@ export default function Footer() {
               efficiency, and competitive advantage.
             </p>
             <div className="flex items-center gap-4">
-              <a href={tel} className="inline-flex items-center gap-2 text-zinc-300 hover:text-white transition-colors">
+              <Link href={tel} className="inline-flex items-center gap-2 text-zinc-300 hover:text-white transition-colors">
                 <Phone className="h-4 w-4" />
                 <span className="text-sm">+91 80028 45545</span>
-              </a>
-              <a href={mailto} className="inline-flex items-center gap-2 text-zinc-300 hover:text-white transition-colors">
+              </Link>
+              <Link href={mailto} className="inline-flex items-center gap-2 text-zinc-300 hover:text-white transition-colors">
                 <Mail className="h-4 w-4" />
                 <span className="text-sm">{email}</span>
-              </a>
+              </Link>
             </div>
           </div>
 

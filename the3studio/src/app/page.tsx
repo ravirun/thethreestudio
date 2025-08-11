@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, CheckCircle, ArrowRight, Phone, Mail, Brain, Megaphone, MessageSquare, LineChart } from "lucide-react";
-
+import { Calendar, CheckCircle,  Phone, Mail, Brain, Megaphone, MessageSquare, LineChart } from "lucide-react";
+import Link from "next/link";
 
 const steps = [
   { id: 1, title: "Audit", desc: "90‑min diagnosis of growth, ops, and leverage gaps." },
@@ -12,20 +12,7 @@ const steps = [
   { id: 5, title: "Scale", desc: "Dial spend, expand channels, and compound cashflow." },
 ];
 
-const CaseCard = ({tag, title, metric, blurb}:{tag:string; title:string; metric:string; blurb:string;}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.4 }}
-    className="rounded-2xl bg-zinc-900/60 ring-1 ring-white/10 p-6 hover:bg-zinc-900"
-  >
-    <div className="text-xs uppercase tracking-wider text-zinc-400">{tag}</div>
-    <h3 className="mt-2 text-lg font-semibold text-white">{title}</h3>
-    <div className="mt-3 text-3xl font-bold text-white">{metric}</div>
-    <p className="mt-3 text-sm text-zinc-400">{blurb}</p>
-  </motion.div>
-);
+
 
 
 
@@ -72,12 +59,12 @@ export default function TheThreeStudioLanding() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-8"
           >
-            <a 
+            <Link 
               href="https://calendly.com/rs591090/30min"
               className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-8 py-4 font-semibold text-black text-lg hover:bg-emerald-600 transition"
             >
               <Calendar className="h-6 w-6" /> Book Your Ruthless Audit
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -104,7 +91,7 @@ export default function TheThreeStudioLanding() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Work That Drives Results</h2>
             <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
-              Real projects, real metrics, real impact. Here's how we've helped companies transform their operations with AI-first solutions.
+              Real projects, real metrics, real impact. Here&apos;s how we&apos;ve helped companies transform their operations with AI-first solutions.
             </p>
           </div>
           
@@ -311,21 +298,21 @@ export default function TheThreeStudioLanding() {
                 Ready to See These Results for Your Business?
               </h3>
               <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
-                Let's discuss your specific challenges and build an AI-first solution that drives measurable growth.
+                Let&apos;s discuss your specific challenges and build an AI-first solution that drives measurable growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
+                <Link 
                   href="https://calendly.com/rs591090/30min"
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 text-black px-8 py-4 font-semibold hover:bg-emerald-600 transition text-lg"
                 >
                   <Calendar className="h-6 w-6" /> Book Your Strategy Session
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href={whatsapp}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-zinc-800 text-white px-8 py-4 font-semibold hover:bg-zinc-700 transition text-lg"
                 >
                   <MessageSquare className="h-6 w-6" /> Discuss on WhatsApp
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -338,9 +325,9 @@ export default function TheThreeStudioLanding() {
       <section id="contact" className="py-20 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Let's Build Something Amazing</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Let&apos;s Build Something Amazing</h2>
             <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
-              Ready to transform your business with AI-first solutions? Get in touch and let's discuss your project.
+              Ready to transform your business with AI-first solutions? Get in touch and let&apos;s discuss your project.
             </p>
           </div>
           
@@ -351,7 +338,7 @@ export default function TheThreeStudioLanding() {
                 <h3 className="text-xl font-semibold text-white mb-4">Get In Touch</h3>
                 <p className="text-zinc-300 mb-6">
                   Whether you have a specific project in mind or just want to explore possibilities, 
-                  we're here to help you navigate the AI landscape and find the right solutions.
+                  we&apos;re here to help you navigate the AI landscape and find the right solutions.
                 </p>
               </div>
               
@@ -362,7 +349,7 @@ export default function TheThreeStudioLanding() {
                   </div>
                   <div>
                     <div className="text-white font-medium">Phone</div>
-                    <a href={tel} className="text-zinc-300 hover:text-white transition-colors">+91 80028 45545</a>
+                    <Link href={tel} className="text-zinc-300 hover:text-white transition-colors">+91 80028 45545</Link>
                   </div>
                 </div>
                 
@@ -372,7 +359,7 @@ export default function TheThreeStudioLanding() {
                   </div>
                   <div>
                     <div className="text-white font-medium">Email</div>
-                    <a href={mailto} className="text-zinc-300 hover:text-white transition-colors">{email}</a>
+                    <Link href={mailto} className="text-zinc-300 hover:text-white transition-colors">{email}</Link>
                   </div>
                 </div>
                 
@@ -489,7 +476,7 @@ export default function TheThreeStudioLanding() {
                     <option value="25k-50k">$25,000 - $50,000</option>
                     <option value="50k-100k">$50,000 - $100,000</option>
                     <option value="over-100k">Over $100,000</option>
-                    <option value="discuss">Let's discuss</option>
+                    <option value="discuss">Let&apos;s discuss</option>
                   </select>
                 </div>
                 
@@ -507,8 +494,8 @@ export default function TheThreeStudioLanding() {
 
       {/* Sticky mobile CTA */}
       <div className="fixed bottom-4 right-4 flex gap-2 sm:hidden">
-        <a href={mailto} className="rounded-2xl bg-white px-4 py-3 text-black font-semibold shadow-lg">Email</a>
-        <a href={tel} className="rounded-2xl bg-emerald-500 px-4 py-3 text-black font-semibold shadow-lg">Call</a>
+        <Link href={mailto} className="rounded-2xl bg-white px-4 py-3 text-black font-semibold shadow-lg">Email</Link>
+        <Link href={tel} className="rounded-2xl bg-emerald-500 px-4 py-3 text-black font-semibold shadow-lg">Call</Link>
       </div>
     </div>
   );
