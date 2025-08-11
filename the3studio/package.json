@@ -1,5 +1,5 @@
 {
-  "name": "thethreestudio",
+  "name": "the3studio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,13 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.54.0",
+    "@pmndrs/assets": "^1.7.0",
+    "@react-three/drei": "^10.6.1",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/postprocessing": "^3.0.4",
+    "@types/three": "^0.179.0",
     "framer-motion": "^12.23.12",
+    "leva": "^0.10.0",
     "lucide-react": "^0.539.0",
+    "maath": "^0.10.8",
     "next": "15.4.6",
+    "r3f-perf": "^7.2.3",
     "react": "19.1.0",
-    "react-calendly": "^4.4.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
