@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, CheckCircle,  Phone, Mail, Brain, Megaphone, MessageSquare, LineChart } from "lucide-react";
+import { Calendar, CheckCircle, Phone, Mail, Brain, Megaphone, MessageSquare, LineChart } from "lucide-react";
 import Link from "next/link";
 
 const steps = [
@@ -12,14 +12,27 @@ const steps = [
   { id: 5, title: "Scale", desc: "Dial spend, expand channels, and compound cashflow." },
 ];
 
-
+// const CaseCard = ({tag, title, metric, blurb}:{tag:string; title:string; metric:string; blurb:string;}) => (
+//   <motion.div
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.4 }}
+//     className="rounded-2xl bg-zinc-900/60 ring-1 ring-white/10 p-6 hover:bg-zinc-900"
+//   >
+//     <div className="text-xs uppercase tracking-wider text-zinc-400">{tag}</div>
+//     <h3 className="mt-2 text-lg font-semibold text-white">{title}</h3>
+//     <div className="mt-3 text-3xl font-bold text-white">{metric}</div>
+//     <p className="mt-3 text-sm text-zinc-400">{blurb}</p>
+//   </motion.div>
+// );
 
 
 
 export default function TheThreeStudioLanding() {
   const phone = "+918002845545";
   const email = "thethreestudio@gmail.com";
-  const whatsapp = `https://wa.me/918002845545?text=Hi%20The%203%20Studio%20—%20I%20want%20to%20discuss%20AI-first%20growth.`;
+  // const whatsapp = `https://wa.me/918002845545?text=Hi%20The%203%20Studio%20—%20I%20want%20to%20discuss%20AI-first%20growth.`;
   const mailto = `mailto:${email}?subject=Project%20Inquiry%20—%20The%203%20Studio`;
   const tel = `tel:${phone}`;
 
@@ -300,20 +313,6 @@ export default function TheThreeStudioLanding() {
               <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
                 Let&apos;s discuss your specific challenges and build an AI-first solution that drives measurable growth.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  href="https://calendly.com/rs591090/30min"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 text-black px-8 py-4 font-semibold hover:bg-emerald-600 transition text-lg"
-                >
-                  <Calendar className="h-6 w-6" /> Book Your Strategy Session
-                </Link>
-                <Link 
-                  href={whatsapp}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-zinc-800 text-white px-8 py-4 font-semibold hover:bg-zinc-700 transition text-lg"
-                >
-                  <MessageSquare className="h-6 w-6" /> Discuss on WhatsApp
-                </Link>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -400,93 +399,7 @@ export default function TheThreeStudioLanding() {
             {/* Contact Form */}
             <div className="bg-zinc-900/60 rounded-2xl ring-1 ring-white/10 p-8">
               <h3 className="text-xl font-semibold text-white mb-6">Send Us a Message</h3>
-              <form onSubmit={(e) => {
-                e.preventDefault(); 
-                alert("Thank you! We'll get back to you within 24 hours.");
-              }} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-300 mb-2">First Name</label>
-                    <input 
-                      required 
-                      className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white placeholder-zinc-500 focus:ring-2 focus:ring-emerald-500 transition" 
-                      placeholder="Your first name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-300 mb-2">Last Name</label>
-                    <input 
-                      required 
-                      className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white placeholder-zinc-500 focus:ring-2 focus:ring-emerald-500 transition" 
-                      placeholder="Your last name"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">Email</label>
-                  <input 
-                    type="email" 
-                    required 
-                    className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white placeholder-zinc-500 focus:ring-2 focus:ring-emerald-500 transition" 
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">Company</label>
-                  <input 
-                    className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white placeholder-zinc-500 focus:ring-2 focus:ring-emerald-500 transition" 
-                    placeholder="Your company name"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">Project Type</label>
-                  <select className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 transition">
-                    <option value="">Select a project type</option>
-                    <option value="ai-strategy">AI Strategy & Consulting</option>
-                    <option value="ai-development">AI-Powered Software Development</option>
-                    <option value="ai-integration">AI Integration & Modernization</option>
-                    <option value="ecommerce">AI-First E-commerce Growth</option>
-                    <option value="ai-marketing">AI Marketing & Automation</option>
-                    <option value="product-engineering">AI-Native Product Engineering</option>
-                    <option value="analytics">AI-Powered Analytics</option>
-                    <option value="ai-frameworks">Responsible AI Frameworks</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">Project Details</label>
-                  <textarea 
-                    required 
-                    rows={4} 
-                    className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white placeholder-zinc-500 focus:ring-2 focus:ring-emerald-500 transition" 
-                    placeholder="Tell us about your project, challenges, and goals..."
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">Budget Range</label>
-                  <select className="w-full rounded-xl bg-zinc-950 ring-1 ring-white/10 px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 transition">
-                    <option value="">Select budget range</option>
-                    <option value="under-10k">Under $10,000</option>
-                    <option value="10k-25k">$10,000 - $25,000</option>
-                    <option value="25k-50k">$25,000 - $50,000</option>
-                    <option value="50k-100k">$50,000 - $100,000</option>
-                    <option value="over-100k">Over $100,000</option>
-                    <option value="discuss">Let&apos;s discuss</option>
-                  </select>
-                </div>
-                
-                <button 
-                  type="submit" 
-                  className="w-full rounded-xl bg-emerald-500 hover:bg-emerald-600 px-6 py-4 font-semibold text-black transition text-lg"
-                >
-                  Send Message
-                </button>
-              </form>
+              <Link href="/contact" className="text-zinc-300 hover:text-white transition-colors">Contact Us</Link>
             </div>
           </div>
         </div>
