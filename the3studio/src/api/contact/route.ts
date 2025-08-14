@@ -1,22 +1,47 @@
-// app/api/contact/route.ts
-import { NextRequest, NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
+// import { createClient } from "@supabase/supabase-js";
 
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { fname, lname, phone, email, message } = body || {};
+// const supabase = createClient(
+//   process.env.SUPABASE_URL!,
+//   process.env.SUPABASE_SERVICE_ROLE_KEY!, // server-only
+//   { auth: { persistSession: false } }
+// );
 
-    // basic validation
-    if (!fname || !lname || !phone || !email || !message) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
+// export async function POST(req: Request) {
+//   try {
+//     const { fname, lname, phone, email, message } = await req.json();
 
-    // TODO: push to CRM / send email / persist to DB
-    console.log("CONTACT_FORM:", { fname, lname, phone, email, message });
+//     // minimal validation
+//     if (![fname, lname, phone, email, message].every(Boolean)) {
+//       return NextResponse.json({ error: "missing" }, { status: 400 });
+//     }
 
-    return NextResponse.json({ ok: true, message: "Form data received" });
-  } catch (err) {
-    console.error("CONTACT_FORM_ERROR:", err);
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
-  }
-}
+//     // metadata
+//     const ip =
+//       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+//       req.headers.get("x-real-ip") ??
+//       null;
+//     const ua = req.headers.get("user-agent") ?? null;
+
+//     const { data, error } = await supabase
+//       .from("contact_messages")
+//       .insert({
+//         fname,
+//         lname,
+//         phone,
+//         email,
+//         message,
+//         ip,
+//         ua,
+//       })
+//       .select("id")
+//       .single();
+
+//     if (error) throw error;
+
+//     return NextResponse.json({ ok: true, id: data.id });
+//   } catch (err) {
+//     console.error("API /contact error:", err);
+//     return NextResponse.json({ error: "server" }, { status: 500 });
+//   }
+// }

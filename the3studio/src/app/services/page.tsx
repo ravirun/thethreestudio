@@ -26,7 +26,7 @@ export default function Services() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             
-            <a href="#pricing" className="rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white">Get Started</a>
+            <a href="/contact" className="rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white">Get Started</a>
           </div>
           <div className="mt-8 flex items-center gap-4 text-xs text-zinc-500">
             <div className="inline-flex items-center gap-2"><ShieldCheck size={16} /> 30-day warranty</div>
@@ -129,10 +129,20 @@ export default function Services() {
             <h3 className="mt-2 text-2xl font-bold">Let’s scope it in one call</h3>
             <p className="mt-2 max-w-2xl text-sm text-zinc-400">Bring your goals. We’ll map the shortest path to ROI and quote it on the spot.</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <a className="inline-flex items-center gap-2 rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white" href="#">
+              <a 
+                className="inline-flex items-center gap-2 rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white" 
+                href="https://calendly.com/rs591090/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <PhoneCall size={16} /> Book a Call
               </a>
-              <a className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900 px-4 py-2 text-sm font-semibold hover:bg-zinc-800" href="#">
+              <a 
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900 px-4 py-2 text-sm font-semibold hover:bg-zinc-800"
+                href="mailto:thethreestudio@gmail.com?subject=Project%20Brief%20-%20Services%20Inquiry&body=Hi%20The%203%20Studio%2C%0A%0AI'm%20interested%20in%20your%20services.%20Please%20send%20me%20a%20brief%20about%20your%20offerings%20and%20pricing.%0A%0AThanks!"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Mail size={16} /> Email the Brief
               </a>
             </div>

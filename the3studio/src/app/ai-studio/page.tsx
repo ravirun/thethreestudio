@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Brain, Zap, MessageSquare, Image, FileText, Video,  Code, ArrowRight, Play, Sparkles, Cpu, Target, Users, Globe } from "lucide-react";
+import { Brain, Zap, MessageSquare, Image as ImageIcon, FileText, Video,  Code, ArrowRight, Play, Sparkles, Cpu, Target, Users, Globe } from "lucide-react";
 
 export default function AiStudio() {
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
@@ -29,7 +29,7 @@ export default function AiStudio() {
       id: "image-generator",
       name: "AI Image Generator",
       description: "Create stunning visuals and graphics with AI-powered image generation",
-      icon: <Image className="h-8 w-8" aria-hidden="true" />,
+      icon: <ImageIcon className="h-8 w-8" aria-hidden="true" />,
       category: "Creative",
       features: [
         "Text-to-image generation",
@@ -147,7 +147,7 @@ export default function AiStudio() {
       id: "image-demo",
       title: "Image Generator Demo",
       description: "Create stunning visuals with AI",
-      icon: <Image className="h-6 w-6" aria-hidden="true" />,
+      icon: <ImageIcon className="h-6 w-6" aria-hidden="true" />,
       status: "Coming Soon"
     },
     {

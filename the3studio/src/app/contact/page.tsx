@@ -1,35 +1,27 @@
-// app/contact/page.tsx
-import ContactForm from "@/components/contact";
+import { ContactForm } from "@/components/contact";
+import { ContactBanner } from "@/components/ContactBanner";
+import { createContact } from "@/actions/contact";
 
-export default function ContactPage({
+type BannerType = "success" | "error" | "spam" | "invalid" | "db_error" | undefined;
+
+export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: { success?: string; error?: string };
+  searchParams: Promise<{ contact?: string }>;
 }) {
-  const success = searchParams?.success === "1";
-  const error = searchParams?.error;
+  const params = await searchParams;
+  // Bind different redirect targets for the dedicated page
+  const action = createContact.bind(null, {
+    successUrl: "/contact",
+    errorUrl: "/contact",
+  });
 
   return (
-    <main className="min-h-screen bg-black text-zinc-100 px-4 py-12">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="text-3xl font-bold">Contact</h1>
-        <p className="mt-2 text-zinc-400">Tell us about your project.</p>
-
-        {success && (
-          <p className="mt-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-emerald-300">
-            Thanks! We’ll get back to you shortly.
-          </p>
-        )}
-        {error && (
-          <p className="mt-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-red-300">
-            Something’s missing. Please fill all fields.
-          </p>
-        )}
-
-        <div className="mt-8">
-          <ContactForm />
-        </div>
+    <div className="bg-black min-h-screen text-white">
+      <ContactBanner type={params?.contact as BannerType} />
+      <div className="container mx-auto px-6 py-16">
+        <ContactForm action={action} title="Let's build something memorable" />
       </div>
-    </main>
+    </div>
   );
 }

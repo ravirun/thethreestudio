@@ -1,415 +1,342 @@
 "use client";
-import React from "react";
+
 import { motion } from "framer-motion";
-import { Calendar, CheckCircle, Phone, Mail, Brain, Megaphone, MessageSquare, LineChart } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, CheckCircle, MessageSquare, TrendingUp, Zap } from "lucide-react";
+import { ContactForm } from "@/components/contact";
+import { ContactBanner } from "@/components/ContactBanner";
+import { createContact } from "@/actions/contact";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-const steps = [
-  { id: 1, title: "Audit", desc: "90‑min diagnosis of growth, ops, and leverage gaps." },
-  { id: 2, title: "Strategy", desc: "One-page plan with KPIs, systems, and accountable owners." },
-  { id: 3, title: "Build", desc: "Ship core automations, funnels, and product in 2–4 weeks." },
-  { id: 4, title: "Automate", desc: "Turn playbooks into bots. Remove manual work, add velocity." },
-  { id: 5, title: "Scale", desc: "Dial spend, expand channels, and compound cashflow." },
-];
+type BannerType = "success" | "error" | "spam" | "invalid" | "db_error" | undefined;
 
-// const CaseCard = ({tag, title, metric, blurb}:{tag:string; title:string; metric:string; blurb:string;}) => (
-//   <motion.div
-//     initial={{ opacity: 0, y: 20 }}
-//     whileInView={{ opacity: 1, y: 0 }}
-//     viewport={{ once: true }}
-//     transition={{ duration: 0.4 }}
-//     className="rounded-2xl bg-zinc-900/60 ring-1 ring-white/10 p-6 hover:bg-zinc-900"
-//   >
-//     <div className="text-xs uppercase tracking-wider text-zinc-400">{tag}</div>
-//     <h3 className="mt-2 text-lg font-semibold text-white">{title}</h3>
-//     <div className="mt-3 text-3xl font-bold text-white">{metric}</div>
-//     <p className="mt-3 text-sm text-zinc-400">{blurb}</p>
-//   </motion.div>
-// );
-
-
-
-export default function TheThreeStudioLanding() {
-  const phone = "+918002845545";
-  const email = "thethreestudio@gmail.com";
-  // const whatsapp = `https://wa.me/918002845545?text=Hi%20The%203%20Studio%20—%20I%20want%20to%20discuss%20AI-first%20growth.`;
-  const mailto = `mailto:${email}?subject=Project%20Inquiry%20—%20The%203%20Studio`;
-  const tel = `tel:${phone}`;
+function HomePageClient() {
+  const searchParams = useSearchParams();
+  const contactStatus = searchParams.get("contact") as BannerType;
+  
+  // Bind success/error destinations for the homepage
+  const action = createContact.bind(null, {
+    successUrl: "/",
+    errorUrl: "/",
+  });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-950 to-black text-zinc-200">
-      
-      {/* Hero */}
-
-      
+    <main className="bg-black min-h-screen text-white">
+      <ContactBanner type={contactStatus} />
+      {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden>
+        <div className="absolute inset-0">
           <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-fuchsia-600 blur-3xl" />
           <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-600 blur-3xl" />
-        </div>
+      </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white"
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-7xl font-bold text-center mb-8"
           >
-            AI‑First Digital Tech Agency
+            We Build
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
+              {" "}
+              Digital
+              </span>
+            <br />
+            Experiences
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-5 max-w-2xl text-lg text-zinc-300"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-zinc-400 text-center mb-12 max-w-3xl mx-auto"
           >
-            We do great things together. Unlock online growth with our proven AI RAG systems, fine-tuned models, and digital marketing techniques. With our data-driven solutions, you can raise exposure, draw customers, increase conversions, and keep up with the competition.
+            From concept to launch, we create cutting-edge web applications,
+            AI-powered solutions, and digital products that drive real business
+            results.
           </motion.p>
-          
-          {/* Single Primary CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="mt-8"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link 
-              href="https://calendly.com/rs591090/30min"
-              className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-8 py-4 font-semibold text-black text-lg hover:bg-emerald-600 transition"
+            <a
+              href="#contact"
+              className="bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2"
             >
-              <Calendar className="h-6 w-6" /> Book Your Ruthless Audit
-            </Link>
+              Start Your Project
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            <a
+              href="/work"
+              className="border border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2"
+            >
+              View Our Work
+            </a>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section id="process" className="py-20 bg-gradient-to-b from-black/40 to-black/20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">Zero‑Fluff Delivery</h2>
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {steps.map((s) => (
-              <div key={s.id} className="rounded-2xl bg-zinc-900/60 ring-1 ring-white/10 p-5">
-                <div className="text-xs text-zinc-400">Step {s.id}</div>
-                <div className="mt-1 text-white font-semibold">{s.title}</div>
-                <div className="mt-2 text-sm text-zinc-300">{s.desc}</div>
-              </div>
-            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Work */}
-      <section id="work" className="py-20">
+        {/* Services Section */}
+      <section className="py-24 bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Work That Drives Results</h2>
-            <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold mb-4">What We Do</h2>
+            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+              We specialize in creating modern, scalable solutions that help
+              businesses grow and succeed in the digital age.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Zap,
+                  title: "Web Development",
+                description:
+                  "Custom websites, e-commerce platforms, and web applications built with modern technologies.",
+                features: ["React/Next.js", "TypeScript", "Tailwind CSS"],
+                },
+                {
+                icon: MessageSquare,
+                  title: "AI Solutions",
+                description:
+                  "Intelligent chatbots, automation tools, and AI-powered features that enhance user experience.",
+                features: ["OpenAI Integration", "Custom AI Models", "Automation"],
+              },
+              {
+                icon: TrendingUp,
+                title: "Digital Marketing",
+                description:
+                  "Data-driven marketing strategies that increase visibility and drive conversions.",
+                features: ["SEO Optimization", "Content Strategy", "Analytics"],
+              },
+              ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-zinc-900 p-8 rounded-2xl hover:bg-zinc-800 transition-colors"
+              >
+                <service.icon className="w-12 h-12 text-emerald-400 mb-6" />
+                <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
+                <p className="text-zinc-400 mb-6">{service.description}</p>
+                <ul className="space-y-2">
+                  {service.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      <span className="text-sm text-zinc-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+      {/* Case Studies Section */}
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold mb-4">Success Stories</h2>
+            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
               Real projects, real metrics, real impact. Here&apos;s how we&apos;ve helped companies transform their operations with AI-first solutions.
             </p>
-          </div>
+          </motion.div>
           
           <div className="space-y-16">
             {/* Case Study 1 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             >
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full">AI Strategy</span>
-                    <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm font-medium rounded-full">Enterprise</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Enterprise AI Transformation</h3>
-                  <p className="text-zinc-300 text-lg leading-relaxed">
-                    Comprehensive AI readiness assessment and implementation roadmap for a Fortune 500 manufacturing company. 
-                    We identified 12 high-impact AI use cases and built a 3-year transformation plan.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-emerald-400">40%</div>
-                      <div className="text-sm text-zinc-400">Cost Reduction</div>
-                    </div>
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-blue-400">12</div>
-                      <div className="text-sm text-zinc-400">AI Use Cases</div>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">AI Strategy</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Process Automation</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Data Analytics</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Change Management</span>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="bg-blue-500/20 p-4 rounded-2xl">
+                    <MessageSquare className="h-16 w-16 text-blue-400 mx-auto mb-4" />
+                    <div className="text-white font-semibold">AI Customer Service Platform</div>
                   </div>
                 </div>
-                <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl p-8 flex items-center justify-center">
-                    <div className="text-center">
-                      <Brain className="h-16 w-16 text-emerald-400 mx-auto mb-4" />
-                      <div className="text-white font-semibold">AI Transformation Dashboard</div>
-                    </div>
+                <h3 className="text-3xl font-bold">
+                  Revolutionizing Customer Support with AI
+                </h3>
+                <p className="text-zinc-400 text-lg">
+                  Built an intelligent chatbot system that handles 80% of customer
+                  inquiries automatically, reducing response times from hours to
+                  seconds.
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-emerald-400">80%</div>
+                    <div className="text-sm text-zinc-400">Auto Resolution</div>
                   </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-400">95%</div>
+                    <div className="text-sm text-zinc-400">Customer Satisfaction</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-400">60%</div>
+                    <div className="text-sm text-zinc-400">Cost Reduction</div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">OpenAI GPT-4</span>
+                  <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Next.js</span>
+                  <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Supabase</span>
                 </div>
               </div>
+              <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 rounded-2xl">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
+                    <span className="text-sm text-zinc-300">AI Assistant Online</span>
+                  </div>
+                  <div className="bg-zinc-900 p-4 rounded-lg">
+                    <p className="text-sm text-zinc-300">
+                      &quot;How can I help you today? I can assist with orders,
+                      returns, and general inquiries.&quot;
+                    </p>
+                  </div>
+                  <div className="bg-emerald-500/20 p-4 rounded-lg ml-8">
+                    <p className="text-sm text-emerald-300">
+                      &quot;I need to return an item I ordered last week&quot;
+                    </p>
+                  </div>
+                  <div className="bg-zinc-900 p-4 rounded-lg">
+                    <p className="text-sm text-zinc-300">
+                      &quot;I&apos;ll help you with that. Please provide your order
+                      number and I&apos;ll guide you through the return process.&quot;
+                    </p>
+                  </div>
+            </div>
+          </div>
             </motion.div>
 
             {/* Case Study 2 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="group"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             >
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="relative lg:order-2">
-                  <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl p-8 flex items-center justify-center">
-                    <div className="text-center">
-                      <Megaphone className="h-16 w-16 text-purple-400 mx-auto mb-4" />
-                      <div className="text-white font-semibold">Autonomous Marketing System</div>
+              <div className="bg-gradient-to-br from-red-500/20 to-orange-500/20 p-8 rounded-2xl order-2 lg:order-1">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold text-white">Fraud Detection Dashboard</h4>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-red-400">Live Monitoring</span>
                     </div>
                   </div>
-                </div>
-                <div className="space-y-6 lg:order-1">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm font-medium rounded-full">AI Marketing</span>
-                    <span className="px-3 py-1 bg-pink-500/20 text-pink-400 text-sm font-medium rounded-full">E-commerce</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Autonomous Marketing System</h3>
-                  <p className="text-zinc-300 text-lg leading-relaxed">
-                    Built an AI-powered marketing platform for a D2C beauty brand that manages campaigns 24/7. 
-                    The system autonomously optimizes ad spend, creative performance, and audience targeting.
-                  </p>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-purple-400">3.6x</div>
-                      <div className="text-sm text-zinc-400">ROAS Improvement</div>
+                    <div className="bg-zinc-900 p-3 rounded-lg text-center">
+                      <div className="text-lg font-bold text-emerald-400">₹2.4M</div>
+                      <div className="text-xs text-zinc-400">Saved Today</div>
                     </div>
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-pink-400">24/7</div>
-                      <div className="text-sm text-zinc-400">Autonomous Operation</div>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">AI Agents</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Predictive Analytics</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Creative Optimization</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Facebook Ads API</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Case Study 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="group"
-            >
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm font-medium rounded-full">AI Product</span>
-                    <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-sm font-medium rounded-full">SaaS</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Intelligent Customer Platform</h3>
-                  <p className="text-zinc-300 text-lg leading-relaxed">
-                    Developed a customer service platform powered by AI agents that handle inquiries, 
-                    process orders, and provide personalized recommendations with 90% accuracy.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-blue-400">90%</div>
-                      <div className="text-sm text-zinc-400">Accuracy Rate</div>
-                    </div>
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-cyan-400">5x</div>
-                      <div className="text-sm text-zinc-400">Faster Response</div>
+                    <div className="bg-zinc-900 p-3 rounded-lg text-center">
+                      <div className="text-lg font-bold text-red-400">47</div>
+                      <div className="text-xs text-zinc-400">Threats Blocked</div>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Natural Language Processing</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">AI Agents</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Real-time Analytics</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Multi-channel Support</span>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl p-8 flex items-center justify-center">
-                    <div className="text-center">
-                      <MessageSquare className="h-16 w-16 text-blue-400 mx-auto mb-4" />
-                      <div className="text-white font-semibold">AI Customer Service Platform</div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-zinc-300">Suspicious Activity</span>
+                      <span className="text-red-400">High Risk</span>
+                    </div>
+                    <div className="w-full bg-zinc-800 rounded-full h-2">
+                      <div className="bg-red-400 h-2 rounded-full" style={{ width: "85%" }}></div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-
-            {/* Case Study 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="group"
-            >
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="relative lg:order-2">
-                  <div className="aspect-video bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-2xl p-8 flex items-center justify-center">
-                    <div className="text-center">
-                      <LineChart className="h-16 w-16 text-orange-400 mx-auto mb-4" />
-                      <div className="text-white font-semibold">Predictive Analytics Engine</div>
-                    </div>
+              <div className="space-y-6 order-1 lg:order-2">
+                <div className="flex items-center gap-4">
+                  <div className="bg-red-500/20 p-4 rounded-2xl">
+                    <div className="text-white font-semibold">Financial Security Platform</div>
                   </div>
                 </div>
-                <div className="space-y-6 lg:order-1">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-orange-500/20 text-orange-400 text-sm font-medium rounded-full">Data Science</span>
-                    <span className="px-3 py-1 bg-red-500/20 text-red-400 text-sm font-medium rounded-full">FinTech</span>
+                <h3 className="text-3xl font-bold">
+                  Protecting Millions with AI-Powered Fraud Detection
+                </h3>
+                <p className="text-zinc-400 text-lg">
+                  Developed a real-time fraud detection system that analyzes
+                  thousands of transactions per second, preventing financial
+                  losses and protecting customer data.
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-emerald-400">₹50M+</div>
+                    <div className="text-sm text-zinc-400">Fraud Prevented</div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Predictive Analytics Engine</h3>
-                  <p className="text-zinc-300 text-lg leading-relaxed">
-                    Built a machine learning platform for a fintech company that predicts customer churn, 
-                    identifies fraud patterns, and optimizes pricing strategies in real-time.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-orange-400">85%</div>
-                      <div className="text-sm text-zinc-400">Prediction Accuracy</div>
-                    </div>
-                    <div className="bg-zinc-900/60 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-red-400">60%</div>
-                      <div className="text-sm text-zinc-400">Fraud Detection</div>
-                    </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-400">99.9%</div>
+                    <div className="text-sm text-zinc-400">Accuracy Rate</div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Machine Learning</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Real-time Processing</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Predictive Models</span>
-                    <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Data Pipeline</span>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-red-400">60%</div>
+                    <div className="text-sm text-zinc-400">Fraud Detection</div>
                   </div>
                 </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Machine Learning</span>
+                  <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Real-time Processing</span>
+                  <span className="px-3 py-1 bg-zinc-800 text-zinc-300 text-sm rounded-lg">Python</span>
+          </div>
               </div>
             </motion.div>
           </div>
+            </div>
+      </section>
 
-          {/* CTA Section */}
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-20 text-center"
+            className="text-center mb-16"
           >
-            <div className="bg-zinc-900/60 rounded-3xl p-8 md:p-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Ready to See These Results for Your Business?
-              </h3>
-              <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
-                Let&apos;s discuss your specific challenges and build an AI-first solution that drives measurable growth.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-
-
-      {/* Contact */}
-      <section id="contact" className="py-20 border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Let&apos;s Build Something Amazing</h2>
-            <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
-              Ready to transform your business with AI-first solutions? Get in touch and let&apos;s discuss your project.
+            <h2 className="text-4xl font-bold mb-4">Ready to Build Something Amazing?</h2>
+            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+              Let&apos;s discuss your project and turn your vision into reality.
+              We&apos;re here to help you succeed.
             </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-4">Get In Touch</h3>
-                <p className="text-zinc-300 mb-6">
-                  Whether you have a specific project in mind or just want to explore possibilities, 
-                  we&apos;re here to help you navigate the AI landscape and find the right solutions.
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Phone</div>
-                    <Link href={tel} className="text-zinc-300 hover:text-white transition-colors">+91 80028 45545</Link>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Email</div>
-                    <Link href={mailto} className="text-zinc-300 hover:text-white transition-colors">{email}</Link>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                    <Calendar className="h-5 w-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Response Time</div>
-                    <div className="text-zinc-300">Within 24 hours</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="pt-6 border-t border-white/10">
-                <h4 className="text-lg font-semibold text-white mb-3">What to Expect</h4>
-                <ul className="space-y-2 text-zinc-300">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-400" />
-                    Free initial consultation
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-400" />
-                    Detailed project proposal
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-400" />
-                    Transparent pricing
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-400" />
-                    Ongoing support
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            {/* Contact Form */}
-            <div className="bg-zinc-900/60 rounded-2xl ring-1 ring-white/10 p-8">
-              <h3 className="text-xl font-semibold text-white mb-6">Send Us a Message</h3>
-              <Link href="/contact" className="text-zinc-300 hover:text-white transition-colors">Contact Us</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+          </motion.div>
 
-      {/* Sticky mobile CTA */}
-      <div className="fixed bottom-4 right-4 flex gap-2 sm:hidden">
-        <Link href={mailto} className="rounded-2xl bg-white px-4 py-3 text-black font-semibold shadow-lg">Email</Link>
-        <Link href={tel} className="rounded-2xl bg-emerald-500 px-4 py-3 text-black font-semibold shadow-lg">Call</Link>
+          <div className="flex justify-center">
+            <ContactForm action={action} />
+          </div>
       </div>
-    </div>
+      </section>
+    </main>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <HomePageClient />
+    </Suspense>
   );
 }

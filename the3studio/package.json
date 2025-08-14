@@ -14,6 +14,7 @@
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
+    "@supabase/supabase-js": "^2.55.0",
     "@types/three": "^0.179.0",
     "framer-motion": "^12.23.12",
     "leva": "^0.10.0",
@@ -23,7 +24,9 @@
     "r3f-perf": "^7.2.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "three": "^0.179.1"
+    "resend": "^6.0.1",
+    "three": "^0.179.1",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -272,8 +272,24 @@ function Summary({
         <div className="flex items-center justify-between text-lg font-bold text-zinc-100"><span>Total</span><span>{formatINR(total)}</span></div>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <button className="rounded-xl bg-zinc-100 px-5 py-3 font-semibold text-zinc-900 hover:bg-white">Schedule Free Call</button>
-        <button className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-zinc-100 hover:bg-zinc-800">Email Me The Quote</button>
+        <a 
+          href="https://calendly.com/rs591090/30min" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="rounded-xl bg-zinc-100 px-5 py-3 font-semibold text-zinc-900 hover:bg-white text-center transition-colors"
+        >
+          Schedule Free Call
+        </a>
+        <button 
+          onClick={() => {
+            const emailSubject = encodeURIComponent(`Project Quote - ${total.toLocaleString('en-IN')} INR`);
+            const emailBody = encodeURIComponent(`Hi,\n\nI'm interested in getting a quote for my project.\n\nProject Details:\n${lines.map(l => `- ${l.label}: ${formatINR(l.price)}`).join('\n')}\n\nTotal: ${formatINR(total)}\n\nPlease send me a detailed quote.\n\nThanks!`);
+            window.open(`mailto:thethreestudio@gmail.com?subject=${emailSubject}&body=${emailBody}`, '_blank');
+          }}
+          className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-zinc-100 hover:bg-zinc-800 transition-colors"
+        >
+          Email Me The Quote
+        </button>
       </div>
       <button onClick={onReset} className="mt-4 inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-200">
         <RefreshCw size={14} /> Reset
@@ -833,7 +849,8 @@ const DEFAULT_SCHEMAS: CalculatorSchema[] = [WebsiteSchema, AIAgentSchema, Autom
 // ------------------------------
 // Main Component
 // ------------------------------
-export default function ProjectCalculator({ schemas = DEFAULT_SCHEMAS }: { schemas?: CalculatorSchema[] }) {
+export default function ProjectCalculator() {
+  const schemas = DEFAULT_SCHEMAS;
   const [active, setActive] = useState(schemas[0].key);
   const current = schemas.find((s) => s.key === active)!;
   const [stepIndex, setStepIndex] = useState(0);

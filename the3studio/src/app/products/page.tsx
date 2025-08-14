@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Package, Download, Star, Users, Zap, Shield, Globe, ArrowRight, ExternalLink } from "lucide-react";
+import { Package, Download, Star, Users, Zap, Shield, Globe, ArrowRight } from "lucide-react";
 
 export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
