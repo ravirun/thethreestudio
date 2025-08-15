@@ -3,7 +3,7 @@ import { Brain, Mail, Phone,  } from "lucide-react";
 
 export default function Footer() {
   const phone = "+918002845545";
-  const email = "thethreestudio@gmail.com";
+  const email = "rs591090@gmail.com";
   const mailto = `mailto:${email}?subject=Project%20Inquiry%20—%20The%203%20Studio`;
   const tel = `tel:${phone}`;
 

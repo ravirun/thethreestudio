@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {  ChevronLeft, ChevronRight, Minus, Plus, RefreshCw } from "lucide-react";
+import {  ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
+import Link from "next/link";
+import { OptionCard } from "@/components";
 
 // ------------------------------
 // Types
@@ -54,72 +56,7 @@ function Pill({ children, className = "" }: { children: React.ReactNode; classNa
   );
 }
 
-function OptionCard({
-  option,
-  selected,
-  onSelect,
-  accent,
-  qty,
-  onQtyChange,
-}: {
-  option: Option;
-  selected: boolean;
-  onSelect: () => void;
-  accent: string;
-  qty?: number;
-  onQtyChange?: (n: number) => void;
-}) {
-  const accentRing = selected ? `ring-2 ring-${accent}-500 bg-${accent}-950/30 border-${accent}-500/50` : "border-white/10 hover:border-white/20";
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      className={cx(
-        "group flex w-full flex-col justify-between rounded-2xl border p-5 text-left transition-all",
-        "bg-zinc-900/60 hover:bg-zinc-900",
-        accentRing
-      )}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="text-2xl leading-none">{option.icon || "✨"}</div>
-        <Pill className="bg-zinc-800 text-zinc-100">{formatINR(option.price)}</Pill>
-      </div>
-      <div className="mt-3">
-        <div className="text-zinc-100 font-semibold">{option.name}</div>
-        {option.description && <p className="text-sm text-zinc-400 mt-1">{option.description}</p>}
-      </div>
 
-      {option.allowQty && typeof qty === "number" && onQtyChange && (
-        <div className="mt-4 flex items-center gap-2">
-          <span className="text-sm text-zinc-400">Qty</span>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onQtyChange(Math.max(option.minQty ?? 1, qty - (option.stepQty ?? 1)));
-              }}
-              className="rounded-lg border border-white/10 p-2 hover:bg-zinc-800"
-            >
-              <Minus size={16} />
-            </button>
-            <span className="min-w-[2ch] text-center text-zinc-100">{qty}</span>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onQtyChange(Math.min(option.maxQty ?? 99, qty + (option.stepQty ?? 1)));
-              }}
-              className="rounded-lg border border-white/10 p-2 hover:bg-zinc-800"
-            >
-              <Plus size={16} />
-            </button>
-          </div>
-        </div>
-      )}
-    </button>
-  );
-}
 
 function ProgressBar({ value, accent }: { value: number; accent: string }) {
   return (
@@ -272,19 +209,19 @@ function Summary({
         <div className="flex items-center justify-between text-lg font-bold text-zinc-100"><span>Total</span><span>{formatINR(total)}</span></div>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <a 
+        <Link 
           href="https://calendly.com/rs591090/30min" 
           target="_blank" 
           rel="noopener noreferrer"
           className="rounded-xl bg-zinc-100 px-5 py-3 font-semibold text-zinc-900 hover:bg-white text-center transition-colors"
         >
           Schedule Free Call
-        </a>
+        </Link>     
         <button 
           onClick={() => {
             const emailSubject = encodeURIComponent(`Project Quote - ${total.toLocaleString('en-IN')} INR`);
             const emailBody = encodeURIComponent(`Hi,\n\nI'm interested in getting a quote for my project.\n\nProject Details:\n${lines.map(l => `- ${l.label}: ${formatINR(l.price)}`).join('\n')}\n\nTotal: ${formatINR(total)}\n\nPlease send me a detailed quote.\n\nThanks!`);
-            window.open(`mailto:thethreestudio@gmail.com?subject=${emailSubject}&body=${emailBody}`, '_blank');
+            window.open(`mailto:rs591090@gmail.com?subject=${emailSubject}&body=${emailBody}`, '_blank');
           }}
           className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-zinc-100 hover:bg-zinc-800 transition-colors"
         >

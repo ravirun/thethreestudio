@@ -17,7 +17,7 @@ export default function Header() {
       href: "/products",
     },
     {
-      label: "Ai Studio",
+      label: "AI Studio",
       href: "/ai-studio",
     },
     {
@@ -41,7 +41,7 @@ export default function Header() {
   const cta = [
     {
       label: "Get Started",
-      href: "/contact",
+      href: "https://calendly.com/rs591090/30min",
     }
   ]
 

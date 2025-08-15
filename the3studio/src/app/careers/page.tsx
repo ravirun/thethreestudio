@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, Building2, Clock, MapPin,  Heart, Coffee, Globe, Trophy, BookOpen, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export default function Careers() {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
@@ -246,9 +247,9 @@ export default function Careers() {
           <p className="text-zinc-400 mb-8">
             We&apos;re always looking for talented people. Send us your resume and we&apos;ll keep you in mind for future opportunities.
           </p>
-          <button className="bg-zinc-100 hover:bg-white text-black font-semibold py-3 px-8 rounded-xl transition-colors">
+          <Link href="mailto:rs591090@gmail.com" className="bg-zinc-100 hover:bg-white text-black font-semibold py-3 px-8 rounded-xl transition-colors">
             Send us your resume
-          </button>
+          </Link>
         </div>
       </div>
     </div>

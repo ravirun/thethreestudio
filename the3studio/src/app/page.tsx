@@ -5,14 +5,9 @@ import { ArrowRight, CheckCircle, MessageSquare, TrendingUp, Zap } from "lucide-
 import { ContactForm } from "@/components/contact";
 import { ContactBanner } from "@/components/ContactBanner";
 import { createContact } from "@/actions/contact";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
-
-type BannerType = "success" | "error" | "spam" | "invalid" | "db_error" | undefined;
+import Link from "next/link";
 
 function HomePageClient() {
-  const searchParams = useSearchParams();
-  const contactStatus = searchParams.get("contact") as BannerType;
   
   // Bind success/error destinations for the homepage
   const action = createContact.bind(null, {
@@ -22,7 +17,7 @@ function HomePageClient() {
 
   return (
     <main className="bg-black min-h-screen text-white">
-      <ContactBanner type={contactStatus} />
+      <ContactBanner  />
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -60,19 +55,13 @@ function HomePageClient() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a
-              href="#contact"
+            <Link
+              href="https://calendly.com/rs591090/30min"
               className="bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2"
             >
               Start Your Project
               <ArrowRight className="w-5 h-5" />
-            </a>
-            <a
-              href="/work"
-              className="border border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2"
-            >
-              View Our Work
-            </a>
+            </Link> 
           </motion.div>
           </div>
         </section>
@@ -335,8 +324,8 @@ function HomePageClient() {
 
 export default function HomePage() {
   return (
-    <Suspense fallback={null}>
+    // <Suspense fallback={null}>
       <HomePageClient />
-    </Suspense>
+    // </Suspense>
   );
 }

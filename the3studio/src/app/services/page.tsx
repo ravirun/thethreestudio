@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Rocket, ShieldCheck, Workflow, Zap, PhoneCall, Mail, Calendar, Star, Layers, PenTool, ShoppingCart, Bot, Cable, BarChart3, Boxes, Building2 } from "lucide-react";
+import {  Check, Rocket, ShieldCheck, Workflow, Zap, PhoneCall, Mail, Calendar, Star, Layers, PenTool, ShoppingCart, Bot, Cable, BarChart3, Boxes, Building2 } from "lucide-react";
+import Link from "next/link";
+import { ServiceCard } from "@/components";     
+import { Card } from "@/components/Card";
 
 export default function Services() {
   return (
@@ -26,7 +29,7 @@ export default function Services() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             
-            <a href="/contact" className="rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white">Get Started</a>
+            <Link href="https://calendly.com/rs591090/30min" className="rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white">Get Started</Link>
           </div>
           <div className="mt-8 flex items-center gap-4 text-xs text-zinc-500">
             <div className="inline-flex items-center gap-2"><ShieldCheck size={16} /> 30-day warranty</div>
@@ -43,7 +46,7 @@ export default function Services() {
             <h2 className="text-2xl font-bold md:text-3xl">Services</h2>
             <p className="mt-1 text-zinc-400">Plug-and-play growth engines. Pick one or stack them.</p>
           </div>
-          <a href="#calculator" className="hidden rounded-xl border border-white/10 bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-200 hover:bg-zinc-800 md:inline-flex">Estimate my project</a>
+          <Link href="/calculator" className="hidden rounded-xl border border-white/10 bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-200 hover:bg-zinc-800 md:inline-flex">Estimate my project</Link>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -106,13 +109,13 @@ export default function Services() {
             { icon: <Rocket className="h-5 w-5" />, t: "Build", d: "Production quality from day one." },
             { icon: <ShieldCheck className="h-5 w-5" />, t: "Launch", d: "Test, document, deploy, support." },
           ].map((s, i) => (
-            <div key={i} className="rounded-2xl border border-white/10 bg-zinc-900/60 p-5">
+            <Card key={i} padding="md" radius="lg">
               <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-800">
                 {s.icon}
               </div>
-              <div className="font-semibold">{s.t}</div>
+              <div className="font-semibold text-zinc-100">{s.t}</div>
               <p className="mt-1 text-sm text-zinc-400">{s.d}</p>
-            </div>
+            </Card>
           ))}
         </div>
       </section>
@@ -129,22 +132,22 @@ export default function Services() {
             <h3 className="mt-2 text-2xl font-bold">Let’s scope it in one call</h3>
             <p className="mt-2 max-w-2xl text-sm text-zinc-400">Bring your goals. We’ll map the shortest path to ROI and quote it on the spot.</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <a 
+              <Link 
                 className="inline-flex items-center gap-2 rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-white" 
                 href="https://calendly.com/rs591090/30min"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <PhoneCall size={16} /> Book a Call
-              </a>
-              <a 
+              </Link>
+              <Link 
                 className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900 px-4 py-2 text-sm font-semibold hover:bg-zinc-800"
-                href="mailto:thethreestudio@gmail.com?subject=Project%20Brief%20-%20Services%20Inquiry&body=Hi%20The%203%20Studio%2C%0A%0AI'm%20interested%20in%20your%20services.%20Please%20send%20me%20a%20brief%20about%20your%20offerings%20and%20pricing.%0A%0AThanks!"
+                href="mailto:rs591090@gmail.com?subject=Project%20Brief%20-%20Services%20Inquiry&body=Hi%20The%203%20Studio%2C%0A%0AI'm%20interested%20in%20your%20services.%20Please%20send%20me%20a%20brief%20about%20your%20offerings%20and%20pricing.%0A%0AThanks!"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Mail size={16} /> Email the Brief
-              </a>
+              </Link>
             </div>
             <div className="mt-5 flex items-center gap-5 text-xs text-zinc-500">
               <span className="inline-flex items-center gap-1"><Star size={14} /> Avg. 4.9/5</span>
@@ -173,28 +176,7 @@ export default function Services() {
   );
 }
 
-function ServiceCard({ icon, title, price, bullets, accent }: { icon: React.ReactNode; title: string; price: string; bullets: string[]; accent: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-zinc-900/60 p-5">
-      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-800">
-        {icon}
-      </div>
-      <div className="flex items-baseline justify-between">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <span className="text-xs text-zinc-400">{price}</span>
-      </div>
-      <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-        {bullets.map((b) => (
-          <li key={b} className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> {b}</li>
-        ))}
-      </ul>
-      <div className={`mt-5 h-px w-full bg-gradient-to-r ${accent} opacity-60`} />
-      <a href="#cta" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 hover:text-white">
-        Get started <ArrowRight size={16} />
-      </a>
-    </div>
-  );
-}
+
 
 // function TierCard({ title, price, tagline, features, cta, popular = false }: { title: string; price: string; tagline: string; features: string[]; cta: string; popular?: boolean }) {
 //   return (
@@ -210,7 +192,7 @@ function ServiceCard({ icon, title, price, bullets, accent }: { icon: React.Reac
 //           <li key={f} className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> {f}</li>
 //         ))}
 //       </ul>
-//       <a href="#cta" className={`mt-5 inline-flex items-center gap-2 rounded-xl ${popular ? "bg-orange-500 text-black hover:brightness-110" : "border border-white/10 bg-zinc-900 text-zinc-100 hover:bg-zinc-800"} px-4 py-2 text-sm font-semibold`}>
+//       <Link href="#cta" className={`mt-5 inline-flex items-center gap-2 rounded-xl ${popular ? "bg-orange-500 text-black hover:brightness-110" : "border border-white/10 bg-zinc-900 text-zinc-100 hover:bg-zinc-800"} px-4 py-2 text-sm font-semibold`}>
 //         {cta} <ArrowRight size={16} />
 //       </a>
 //     </div>
